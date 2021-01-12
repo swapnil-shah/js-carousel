@@ -6,11 +6,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="styles.css">
   <script src="scripts.js" defer></script>
-  <title>Document</title>
+  <title>Vanilla JS Carousel</title>
 </head>
 
 <body>
+  <div class="carousel">
+    <button class="carousel__button carousel__button--left">
+      <img src="left.svg"" alt=" left-arrow" />
+    </button>
 
+    <div class="carousel__track--container">
+      <ul class="carousel__track">
+        <li class="carousel__slide">
+          <img class="carousel__image" src="https://via.placeholder.com/600x600/2980b9/ffffff?text=Slide 1" />
+        </li>
+        <li class="carousel__slide">
+          <img class="carousel__image" src="https://via.placeholder.com/600x600/e74c3c/ffffff?text=Slide 2" />
+        </li>
+        <li class="carousel__slide">
+          <img class="carousel__image" src="https://via.placeholder.com/600x600/f39c12/ffffff?text=Slide 3" />
+        </li>
+      </ul>
+    </div>
+    <button class="carousel__button carousel__button--right ">
+      <img src="right.svg" alt="right-arrow" />
+    </button>
+    <div class="carousel__nav">
+      <button class="carousel__indicator current-slide"></button>
+      <button class="carousel__indicator"></button>
+      <button class="carousel__indicator"></button>
+    </div>
+  </div>
 </body>
 
 </html>
