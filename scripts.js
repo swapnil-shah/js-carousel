@@ -29,9 +29,11 @@ nextButton.addEventListener('click', e => {
   const nextSlide = currentSlide.nextElementSibling
   const currentDot = dotsNav.querySelector('.current-slide')
   const nextDot = currentDot.nextElementSibling;
+  const nextIndex = slides.findIndex(slide => slide === nextSlide)
   //Move the slide
   moveToNextSlide(track, currentSlide, nextSlide)
   updateDots(currentDot, nextDot)
+  hideShowArrows(nextIndex, prevButton, nextButton, slides)
 
 })
 
@@ -41,24 +43,30 @@ prevButton.addEventListener('click', e => {
   const prevSlide = currentSlide.previousElementSibling
   const currentDot = dotsNav.querySelector('.current-slide')
   const prevDot = currentDot.previousElementSibling;
+  const prevIndex = slides.findIndex(slide => slide === prevSlide)
+
   moveToNextSlide(track, currentSlide, prevSlide)
   updateDots(currentDot, prevDot)
+  hideShowArrows(prevIndex, prevButton, nextButton, slides)
+
 })
 
 //When i click nav indicators, move to that slide
 dotsNav.addEventListener('click', e => {
   //What indicator was clicked on
-  const targetDot = e.target.closest('button')//this will prevent adding the click on the container. Will only target circles
+  const targetDot = e.target.closest('button')//this will prevent adding the click on the container. Will only target dots
   if (!targetDot) return;
   const currentSlide = track.querySelector('.current-slide')
   const currentDot = dotsNav.querySelector('.current-slide')
   const targetIndex = dots.findIndex(dot => dot === targetDot)
+  console.log("~ targetIndex", targetIndex)
   const targetSlide = slides[targetIndex]
 
   moveToNextSlide(track, currentSlide, targetSlide)
 
   updateDots(currentDot, targetDot)
 
+  hideShowArrows(targetIndex, prevButton, nextButton, slides)
 })
 
 function moveToNextSlide(track, currentSlide, targetSlide) {
@@ -71,4 +79,19 @@ function moveToNextSlide(track, currentSlide, targetSlide) {
 function updateDots(currentDot, targetDot) {
   currentDot.classList.remove('current-slide')
   targetDot.classList.add('current-slide')
+}
+
+function hideShowArrows(targetIndex, prevButton, nextButton, slides) {
+  if (targetIndex === 0) {
+    prevButton.classList.add('is-hidden')
+    nextButton.classList.remove('is-hidden')
+  }
+  else if (targetIndex === slides.length - 1) {
+    prevButton.classList.remove('is-hidden')
+    nextButton.classList.add('is-hidden')
+  }
+  else {
+    prevButton.classList.remove('is-hidden')
+    nextButton.classList.remove('is-hidden')
+  }
 }
