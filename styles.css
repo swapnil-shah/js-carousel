@@ -176,6 +176,7 @@ table {
 }
 
 .carousel__nav {
+  background-color: wheat;
   display: flex;
   justify-content: center;
   padding: 10px 0;
@@ -188,6 +189,7 @@ table {
   height: 15px;
   background: rgba(0, 0, 0, 0.3);
   margin: 0 12px;
+  cursor: pointer;
 }
 
 .carousel__indicator.current-slide {
